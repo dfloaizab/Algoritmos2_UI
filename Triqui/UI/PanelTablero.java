@@ -76,17 +76,17 @@ public class PanelTablero extends JPanel implements ActionListener { //1
                     validar();
                     jugada_maquina();
                     break;
+               //Completar los siguientes casos
             }
         }
 
     }
 
+    /* COMPLETAR */
     private void jugada_maquina() {
     }
 
-    /**
-     * Valida si hay un ganador:
-     */
+    /* COMPLETAR */
     private void validar() {
 
 

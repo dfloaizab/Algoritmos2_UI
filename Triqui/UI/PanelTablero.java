@@ -15,52 +15,36 @@ public class PanelTablero extends JPanel implements ActionListener { //1
 
     boolean ganador;
 
-   JButton btn_00, btn_01, btn_02, btn_10, btn_11, btn_12, btn_20, btn_21, btn_22;
-
    int tablero[][];
+   JButton botones[][];
 
     public PanelTablero() {
-
-        tablero = new int[3][3];
-        for(int i = 0; i < 3; i++)
-        {
-            for(int j = 0; j < 3; j++)
-            {
-                tablero[i][j] = VACIA;
-            }
-        }
 
         ganador = false;
         turno_actual = X;
 
         this.setLayout(new GridLayout(3,3));
 
-        btn_00 = new JButton();
+        tablero = new int[3][3];
+        botones = new JButton[3][3];
 
-        btn_00.setActionCommand("Casilla1"); //2
-        btn_00.addActionListener(this); //3
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                tablero[i][j] = VACIA;
+                botones[i][j] = new JButton();
+                botones[i][j].setActionCommand(""+i+j);
+                botones[i][j].addActionListener(this);
 
-        btn_01 = new JButton();
-
-        btn_02 = new JButton();
-        btn_10 = new JButton();
-        btn_11 = new JButton();
-        btn_12 = new JButton();
-        btn_20 = new JButton();
-        btn_21 = new JButton();
-        btn_22 = new JButton();
-
-        add(btn_00);
-        add(btn_01);
-        add(btn_02);
-        add(btn_10);
-        add(btn_11);
-        add(btn_12);
-        add(btn_20);
-        add(btn_21);
-        add(btn_22);
+                add(botones[i][j]);
+            }
+        }
     }
 
+    /**
+    * Maneja los eventos de los distintos elementos de UI
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -68,28 +52,100 @@ public class PanelTablero extends JPanel implements ActionListener { //1
 
         if(turno_actual == X && ! ganador) {
             switch (cualBoton) {
-                case "Casilla1":
-                    JOptionPane.showMessageDialog(this, "CLick en el botón 1");
-                    btn_00.setText("X");
-                    btn_00.setEnabled(false);
+                case "00":
+                    //JOptionPane.showMessageDialog(this, "CLick en el botón 1");
+                    botones[0][0].setText("X");
+                    botones[0][0].setEnabled(false);
                     tablero[0][0] = 1;
                     validar();
+                    JOptionPane.showMessageDialog(this, "Juega la máquina"   );
                     jugada_maquina();
                     break;
-               //Completar los siguientes casos
+                case "01":
+                    botones[0][1].setText("X");
+                    botones[0][1].setEnabled(false);
+                    tablero[0][1] = 1;
+                    validar();
+                    JOptionPane.showMessageDialog(this, "Juega la máquina"   );
+                    jugada_maquina();
+                    break;
+                case "02":
+                    botones[0][2].setText("X");
+                    botones[0][2].setEnabled(false);
+                    tablero[0][2] = 1;
+                    validar();
+                    JOptionPane.showMessageDialog(this, "Juega la máquina"   );
+                    jugada_maquina();
+                    break;
+                case "10":
+                    botones[1][0].setText("X");
+                    botones[1][0].setEnabled(false);
+                    tablero[1][0] = 1;
+                    validar();
+                    JOptionPane.showMessageDialog(this, "Juega la máquina"   );
+                    jugada_maquina();
+                    break;
+                case "11":
+                    botones[1][1].setText("X");
+                    botones[1][1].setEnabled(false);
+                    tablero[1][1] = 1;
+                    validar();
+                    JOptionPane.showMessageDialog(this, "Juega la máquina"   );
+                    jugada_maquina();
+                    break;
+                case "20":
+                    botones[2][0].setText("X");
+                    botones[2][0].setEnabled(false);
+                    tablero[2][0] = 1;
+                    validar();
+                    JOptionPane.showMessageDialog(this, "Juega la máquina"   );
+                    jugada_maquina();
+                    break;
+
             }
         }
 
     }
 
-    /* COMPLETAR */
+
+    /**
+    * La jugada de la máquina solo busca la primera casilla libre en la que puede hacer la jugada
+    */
     private void jugada_maquina() {
+        //buscar una casilla libre donde jugar:
+        boolean jugada = false;
+        if(!ganador) {
+            for (int i = 0; i < 3 && !jugada; i++) {
+                for (int j = 0; j < 3 ; j++) {
+                    if (tablero[i][j] == VACIA) {
+                        tablero[i][j] = O;
+                        botones[i][j].setText("O");
+                        botones[i][j].setEnabled(false);
+                        jugada = true;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
-    /* COMPLETAR */
+    /**
+     * PENDIENTE
+     * Validar si hay un ganador, y VALIDAR EL EMPATE:
+     */
     private void validar() {
 
+        //validar primera fila:
+        if(tablero[0][0]== tablero[0][1] && tablero[0][1] == tablero[0][2] && tablero[0][0] != VACIA)
+            ganador = true;
 
+        //validar segunda fila:
+
+        //validar tercera fila:
+
+        //validar columnas:
+
+        //validar diagonales:
 
     }
 }

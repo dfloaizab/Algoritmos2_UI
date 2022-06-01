@@ -17,17 +17,22 @@ public class VentanaPrincipal extends JFrame {
         this.setSize(800, 600);
         this.setResizable(false);
 
+        //Establecer diagramación para la ventana principal:
+        this.setLayout(new BorderLayout());
+
         //Instanciar y agregar el panel del logo:
         logoTriqui = new PanelLogo();
-        this.add(logoTriqui);
+        this.add(logoTriqui, BorderLayout.NORTH);
 
         //Instanciar y agregar el panel del tablero:
         tableroTriqui = new PanelTablero();
-        this.add(tableroTriqui);
+        this.add(tableroTriqui, BorderLayout.CENTER);
 
         //Instanciar y agregar el panel del puntaje:
         puntajeTriqui = new PanelPuntaje();
-        this.add(puntajeTriqui);
+        this.add(puntajeTriqui, BorderLayout.EAST);
+
+
     }
 
     public static void main(String[] args) {
